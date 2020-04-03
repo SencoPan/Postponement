@@ -31,7 +31,7 @@ export default {
 div.footer {
   display: flex;
   justify-content: center;
-  background: #fafafa;
+  background: #e7e7e7;
   margin: auto 0 0 0;
   height: 8em;
 }

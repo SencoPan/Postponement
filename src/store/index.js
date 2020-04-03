@@ -9,7 +9,7 @@ export default new Vuex.Store({
     currentPersons: []
   },
   getters: {
-    persons: (state) => {
+    persons: state => {
       return state.currentPersons;
     }
   },
@@ -23,6 +23,14 @@ export default new Vuex.Store({
       axios.get("http://localhost:3000/api/createPerson").then(allPersons => {
         commit("assignPersons", allPersons);
       });
+    },
+    async addPersonAndGetAll({ commit }, data) {
+      axios
+        .post("http://localhost:3000/api/createPerson", {
+          body: data
+        })
+        .then(person => commit("assignPersons", person))
+        .catch(error => console.error(error));
     }
   },
   modules: {}
