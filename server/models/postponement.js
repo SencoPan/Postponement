@@ -3,11 +3,11 @@ module.exports = (sequelize, DataTypes) => {
   const Postponement = sequelize.define(
     "Postponement",
     {
-      delay: DataTypes.DATE,
-      delayTo: DataTypes.DATE,
-      number: DataTypes.INTEGER,
-      deposit: DataTypes.FLOAT,
-      fullname: DataTypes.STRING
+      delay: {allowNull:false, type: DataTypes.DATE},
+      delayTo: {allowNull:false, type: DataTypes.DATE},
+      number: {allowNull:false, type: DataTypes.INTEGER},
+      deposit: {allowNull:false, type: DataTypes.FLOAT},
+      fullname: {allowNull:false, type: DataTypes.STRING}
     },
     {}
   );

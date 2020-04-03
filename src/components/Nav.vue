@@ -5,14 +5,17 @@
         <p>Postponement</p>
       </div>
       <div class="navigation">
+        <Panel />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Panel from "./nav/Panel";
 export default {
-  name: "Nav"
+  name: "Nav",
+  components: {Panel}
 };
 </script>
 
@@ -49,7 +52,7 @@ div.logo p {
 div.navigation {
   display: flex;
   flex-direction: row;
-  margin-left: auto;
+  margin: auto 0 auto auto;
 }
 div.navigation div.item {
   margin-left: 1em;

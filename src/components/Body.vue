@@ -3,7 +3,7 @@
     <div class="content">
       <div class="list_of_postponement">
         <Table />
-        <div v-for="item of items" :key="item">
+        <div v-for="item of $store.state.currentPersons" v-bind:key="item.number">
           <Person
             :delay="item.delay"
             :delayTo="item.delayTo"
@@ -20,7 +20,13 @@
 <script>
 import Person from "./body/Person";
 import Table from "./body/Table";
+
+
+
 export default {
+  beforeCreate() {
+    this.$store.dispatch("getAllPersons");
+  },
   data() {
     return {
       items: [

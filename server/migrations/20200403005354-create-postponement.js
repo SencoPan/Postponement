@@ -9,18 +9,23 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       delay: {
+        allowNull: false,
         type: Sequelize.DATE
       },
       delayTo: {
+        allowNull: false,
         type: Sequelize.DATE
       },
       number: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       deposit: {
+        allowNull: false,
         type: Sequelize.FLOAT
       },
       fullname: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {
