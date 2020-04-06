@@ -1,5 +1,5 @@
 <template>
-  <div class="postponement id#">
+  <div class="postponement" :class="id">
     <div class="number_value">
       <p>{{ number }}</p>
     </div>
@@ -75,7 +75,7 @@ export default {
 <style scoped>
 .postponement {
   display: flex;
-  outline: 0.1em #737b84 solid;
+  border: 0.1em #737b84 solid;
 }
 
 .full_name_display,

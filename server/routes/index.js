@@ -9,7 +9,7 @@ module.exports = (app) => {
   app.post("/api/person", personController.create);
   app.get("/api/person",  personController.list);
   app.delete("/api/person",  personController.destroy);
-  app.get("/api/getToken",  (req, res) => {
+/*  app.get("/api/getToken",  (req, res) => {
     return res.json({ csrfToken: req.csrfToken() });
-  })
+  })*/
 };

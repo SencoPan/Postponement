@@ -3,18 +3,20 @@
     <div class="content">
       <div class="list_of_postponement">
         <Table />
-        <div
-          v-for="item of $store.state.currentPersons"
-          v-bind:key="item.number"
-        >
-          <Person
-            :id="item.id"
-            :delay="item.delay"
-            :delayTo="item.delayTo"
-            :number="item.number"
-            :deposit="item.deposit"
-            :fullName="item.fullname"
-          />
+        <div class="table_content">
+          <div
+            v-for="item of $store.state.currentPersons"
+            v-bind:key="item.number"
+          >
+            <Person
+              :id="item.id"
+              :delay="item.delay"
+              :delayTo="item.delayTo"
+              :number="item.number"
+              :deposit="item.deposit"
+              :fullName="item.fullname"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -48,5 +50,9 @@ div.content {
 }
 div.content h1 {
   margin: 0;
+}
+.table_content div:last-child div:last-child {
+  border-bottom-left-radius: 0.4em;
+  border-bottom-right-radius: 0.4em;
 }
 </style>
