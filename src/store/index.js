@@ -16,20 +16,27 @@ export default new Vuex.Store({
   mutations: {
     async assignPersons(state, persons) {
       state.currentPersons = persons.data;
+    },
+    async assignPersonsAfterPost(state, persons) {
+      state.currentPersons = persons;
     }
   },
   actions: {
     async getAllPersons({ commit }) {
-      axios.get("http://localhost:3000/api/createPerson").then(allPersons => {
+      axios.get("http://localhost:3000/api/person").then(allPersons => {
         commit("assignPersons", allPersons);
       });
     },
-    async addPersonAndGetAll({ commit }, data) {
+    async addPersonAndGetAll({ dispatch }, data) {
       axios
-        .post("http://localhost:3000/api/createPerson", {
-          body: data
-        })
-        .then(person => commit("assignPersons", person))
+        .post("http://localhost:3000/api/person", { data })
+        .then(() => dispatch("getAllPersons"))
+        .catch(error => console.error(error));
+    },
+    async deletePerson({ /*commit, */ dispatch }, id) {
+      axios
+        .delete(`http://localhost:3000/api/person?id=${id}`)
+        .then(() => dispatch("getAllPersons"))
         .catch(error => console.error(error));
     }
   },

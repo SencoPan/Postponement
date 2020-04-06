@@ -3,13 +3,17 @@
     <div class="content">
       <div class="list_of_postponement">
         <Table />
-        <div v-for="item of $store.state.currentPersons" v-bind:key="item.number">
+        <div
+          v-for="item of $store.state.currentPersons"
+          v-bind:key="item.number"
+        >
           <Person
+            :id="item.id"
             :delay="item.delay"
             :delayTo="item.delayTo"
             :number="item.number"
             :deposit="item.deposit"
-            :fullName="item.fullName"
+            :fullName="item.fullname"
           />
         </div>
       </div>
@@ -21,24 +25,9 @@
 import Person from "./body/Person";
 import Table from "./body/Table";
 
-
-
 export default {
   beforeCreate() {
     this.$store.dispatch("getAllPersons");
-  },
-  data() {
-    return {
-      items: [
-        {
-          delay: "2019-07-16T20:32:21",
-          delayTo: "2019-07-16T20:32:21",
-          deposit: 124.12,
-          fullName: "Test test test",
-          number: 52
-        }
-      ]
-    };
   },
   name: "Body",
   components: { Table, Person }

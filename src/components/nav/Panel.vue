@@ -5,17 +5,22 @@
 <script>
 export default {
   name: "Panel",
+  data() {
+    return {
+      test: 0
+    };
+  },
   methods: {
     alertDisplay() {
       this.$swal({
         title: "Добавить отложку",
         html:
-          "<div style='text-align: center'>" +
-          '<label>ФИО <input id="swal-input1" class="swal2-input fullname"></label>' +
-          '<label>Номер <input id="swal-input2" class="swal2-input number"></label>' +
-          '<label>Депозит<input id="swal-input3" class="swal2-input deposit"></label>' +
-          '<label>Отложенно в <input id="swal-input4" class="swal2-input delay"></label>' +
-          '<label>Отложенно до <input id="swal-input5" class="swal2-input delayTo"></label>' +
+          "<div style='text-align: left'>" +
+          '<label>ФИО <input id="swal-input1" name="fullname" type="text" class="swal2-input fullname"></label>' +
+          '<label>Номер <input id="swal-input2" name="number" type="text"  class="swal2-input number"></label>' +
+          '<label>Депозит<input id="swal-input3" name="deposit" type="text"  class="swal2-input deposit"></label>' +
+          '<label>Отложенно в <input id="swal-input4" name="delay" type="date"  class="swal2-input delay"></label>' +
+          '<label>Отложенно до <input id="swal-input5" name="delayTo" type="date"  class="swal2-input delayTo"></label>' +
           "</div>",
         showCloseButton: true,
         showCancelButton: true,
@@ -49,7 +54,7 @@ export default {
           for (let article in data) {
             data[article] = data[article].value;
           }
-          //this.$store.dispatch("addPerson", data);
+          this.$store.dispatch("addPersonAndGetAll", data);
         }
       });
     }

@@ -19,7 +19,10 @@ export default {
 div.table {
   display: flex;
   min-width: 90em;
-  outline: 0.1em #737b84 solid;
+  background-color: #707070;
+  border-top-left-radius: 0.4em;
+  border-top-right-radius: 0.4em;
+  color: white;
 }
 .id,
 .fullName,
@@ -47,6 +50,7 @@ div.table {
   display: flex;
   width: 10em;
   margin-left: auto;
+  margin-right: 4.5em;
 }
 .end p {
   display: flex;

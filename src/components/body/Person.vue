@@ -10,30 +10,63 @@
       <p>{{ deposit }}</p>
     </div>
     <div class="delayed_date">
-      <p>{{ delay }}</p>
+      <p>{{ delay.substr(0, 10) }}</p>
     </div>
     <div class="delayed_to_date">
-      <p>{{ delayTo }}</p>
+      <p>{{ delayTo.substr(0, 10) }}</p>
     </div>
     <div class="end">
-      <p>{{ time }}</p>
+      <p>
+        {{ `${differenceBetweenDates(delayTo, Date.now().toString())} Дн.` }}
+      </p>
+    </div>
+    <div class="delete">
+      <font-awesome-icon icon="user-times" v-on:click="deletePerson()" />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props : {
-    delay: Date,
-    delayTo: Date,
+  props: {
+    id: Number,
+    delay: String,
+    delayTo: String,
     deposit: Number,
     fullName: String,
-    number: Number,
+    number: Number
   },
   data() {
     return {
-      time: 0
+      currentDate: new Date()
     };
+  },
+  methods: {
+    differenceBetweenDates: (firstDate, secondDate) => {
+      let date = {
+        year: firstDate.substr(0, 4),
+        month: firstDate.substr(5, 2),
+        day: firstDate.substr(8, 2)
+      };
+
+      let first = new Date(date.year, +date.month - 1, date.day, 12, 0, 0, 0);
+
+      let day = 8.64e7;
+
+      return Math.round(Math.abs(first - secondDate) / day);
+    },
+    deletePerson: async function() {
+      await this.$swal.fire({
+        icon: "warning",
+        title: "Подтверждение",
+        text: "Удалить данную отложку?",
+        showCloseButton: true,
+        showCancelButton: true,
+        preConfirm: () => {
+          this.$store.dispatch("deletePerson", this.id);
+        }
+      });
+    }
   },
   name: "Person"
 };
@@ -78,5 +111,15 @@ export default {
 .end p {
   display: flex;
   margin: auto;
+}
+.delete {
+  display: flex;
+  align-items: center;
+  max-width: 1.5em;
+  width: 1.5em;
+  margin-right: 0.5em;
+  font-size: 1.5em;
+  padding-left: 1em;
+  border-left: #2c3e50 0.1em solid;
 }
 </style>

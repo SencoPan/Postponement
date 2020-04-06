@@ -15,7 +15,7 @@
 import Panel from "./nav/Panel";
 export default {
   name: "Nav",
-  components: {Panel}
+  components: { Panel }
 };
 </script>
 
@@ -54,7 +54,7 @@ div.navigation {
   flex-direction: row;
   margin: auto 0 auto auto;
 }
-div.navigation div.item {
+/*div.navigation div.item {
   margin-left: 1em;
-}
+}*/
 </style>

@@ -11,8 +11,7 @@
             Политика конфиденциальности
           </a>
         </div>
-        <div class="contact">
-        </div>
+        <div class="contact"></div>
       </div>
       <div class="copyright">
         <a href="https://github.com/SencoPan"> © 2020 Opes, Inc. </a>
