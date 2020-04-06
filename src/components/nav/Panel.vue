@@ -7,15 +7,17 @@ export default {
   name: "Panel",
   data() {
     return {
-      test: 0
+      test: 0,
     };
   },
   methods: {
     alertDisplay() {
+      this.$store.dispatch("getCSRFToken");
       this.$swal({
         title: "Добавить отложку",
         html:
           "<div style='text-align: left'>" +
+          '<input type="hidden" id="csrf" name="_csrf">' +
           '<label>ФИО <input id="swal-input1" name="fullname" type="text" class="swal2-input fullname"></label>' +
           '<label>Номер <input id="swal-input2" name="number" type="text"  class="swal2-input number"></label>' +
           '<label>Депозит<input id="swal-input3" name="deposit" type="text"  class="swal2-input deposit"></label>' +
@@ -35,21 +37,21 @@ export default {
             delayTo: document.getElementById("swal-input5")
           };
 
-          let flag = false;
+          //let flag = false;
 
           for (let article in data) {
             if (!data[article].value) {
               data[article].style.border = "0.1em solid #ff7373";
               data[article].placeholder = "Не введенно значение";
-              flag = true;
+            //  flag = true;
             } else {
               data[article].style.border = "1px solid #d9d9d9";
             }
           }
-
+/*
           if (flag) {
             return false;
-          }
+          }*/
 
           for (let article in data) {
             data[article] = data[article].value;

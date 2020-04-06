@@ -6,14 +6,22 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    currentPersons: []
+    currentPersons: [],
+    testPrt: [],
+    csrfToken: ""
   },
   getters: {
     persons: state => {
       return state.currentPersons;
+    },
+    getCSRF: state => {
+      return state.csrfToken;
     }
   },
   mutations: {
+    async assignToken(state, token) {
+      state.csrfToken = token;
+    },
     async assignPersons(state, persons) {
       state.currentPersons = persons.data;
     },
@@ -28,8 +36,11 @@ export default new Vuex.Store({
       });
     },
     async addPersonAndGetAll({ dispatch }, data) {
-      axios
-        .post("http://localhost:3000/api/person", { data })
+      axios({
+        method: "post",
+        url: "http://localhost:3000/api/person",
+        data: data,
+      })
         .then(() => dispatch("getAllPersons"))
         .catch(error => console.error(error));
     },
@@ -38,6 +49,19 @@ export default new Vuex.Store({
         .delete(`http://localhost:3000/api/person?id=${id}`)
         .then(() => dispatch("getAllPersons"))
         .catch(error => console.error(error));
+    },
+    async getCSRFToken({ commit }) {
+      axios.get("http://localhost:3000/api/getToken").then(
+        response => {
+          commit("assignToken", response.data.csrfToken);
+          axios.defaults.headers.common.xsrfCookieName = "_csrf";
+          axios.defaults.headers.common["X-CSRF-TOKEN"] =
+            response.data.csrfToken;
+        },
+        err => {
+          console.error(err);
+        }
+      );
     }
   },
   modules: {}
