@@ -39,7 +39,7 @@ export default new Vuex.Store({
       axios({
         method: "post",
         url: "http://localhost:3000/api/person",
-        data: data,
+        data: data
       })
         .then(() => dispatch("getAllPersons"))
         .catch(error => console.error(error));

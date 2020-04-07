@@ -3,7 +3,7 @@
     <Nav></Nav>
     <Body></Body>
     <Footer></Footer>
-    <p> {{ this.$store.state.testPrt }}</p>
+    <p>{{ this.$store.state.testPrt }}</p>
   </div>
 </template>
 
