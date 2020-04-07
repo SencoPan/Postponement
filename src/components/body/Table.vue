@@ -20,6 +20,7 @@ div.table {
   display: flex;
   min-width: 90em;
   background-color: #707070;
+  border: 0.1em #737b84 solid;
   border-top-left-radius: 0.4em;
   border-top-right-radius: 0.4em;
   color: white;
