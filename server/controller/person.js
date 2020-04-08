@@ -7,7 +7,7 @@ module.exports = {
         {
           delay: req.body.delay,
           delayTo: req.body.delayTo,
-          deposit: req.body.deposit,
+          deposit: req.body.deposit.toString(),
           fullname: req.body.fullname,
           number: req.body.number
         },

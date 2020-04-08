@@ -55,5 +55,6 @@ div.content h1 {
 .table_content div:last-child div:last-child {
   border-bottom-left-radius: 0.4em;
   border-bottom-right-radius: 0.4em;
+  border-bottom: #737b84 0.1em solid;
 }
 </style>

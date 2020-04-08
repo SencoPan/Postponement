@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       delay: { allowNull: false, type: DataTypes.DATE },
       delayTo: { allowNull: false, type: DataTypes.DATE },
       number: { allowNull: false, type: DataTypes.INTEGER },
-      deposit: { allowNull: false, type: DataTypes.FLOAT },
+      deposit: { allowNull: false, type: DataTypes.STRING },
       fullname: { allowNull: false, type: DataTypes.STRING }
     },
     {}

@@ -14,7 +14,7 @@
         <div class="contact"></div>
       </div>
       <div class="copyright">
-        <a href="https://github.com/SencoPan"> © 2020 Opes, Inc. </a>
+        <a href="https://github.com/SencoPan"> © 2020 Galatex, Inc. </a>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@ export default {
 div.footer {
   display: flex;
   justify-content: center;
-  background: #e7e7e7;
+  background: #f7f5f5;
   margin: auto 0 0 0;
   height: 8em;
 }
@@ -42,11 +42,14 @@ div.content {
 .copyright {
   margin-top: auto;
   margin-bottom: 1em;
+  color: #3800ff;
 }
 div.copyright a {
-  color: #737b84;
   text-decoration: none;
   margin: auto;
+}
+a:visited {
+  color: #3800ff;
 }
 .info-block {
   display: flex;

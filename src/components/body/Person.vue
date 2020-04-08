@@ -33,7 +33,7 @@ export default {
     id: Number,
     delay: String,
     delayTo: String,
-    deposit: Number,
+    deposit: String,
     fullName: String,
     number: Number,
     endOfDelay: Number
@@ -65,6 +65,7 @@ export default {
 .postponement {
   display: flex;
   border: 0.1em #737b84 solid;
+  border-bottom: none;
 }
 
 .full_name_display,
@@ -110,5 +111,6 @@ export default {
   font-size: 1.5em;
   padding-left: 1em;
   border-left: #2c3e50 0.1em solid;
+  color: #ff1b1b;
 }
 </style>

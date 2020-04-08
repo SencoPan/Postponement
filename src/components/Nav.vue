@@ -26,11 +26,7 @@ div.nav {
   justify-content: center;
   height: 5em;
   background: rgb(85, 134, 255);
-  background: linear-gradient(
-    0deg,
-    rgba(85, 134, 255, 1) 0%,
-    rgba(84, 95, 255, 1) 100%
-  );
+  background: linear-gradient(0deg, rgb(0, 73, 252) 0%, rgb(58, 71, 243) 100%);
   color: white;
 }
 div.content {

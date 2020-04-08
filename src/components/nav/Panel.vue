@@ -1,5 +1,5 @@
 <template>
-  <button v-on:click="alertDisplay">Add Person</button>
+  <button v-on:click="alertDisplay">Внести отложку</button>
 </template>
 
 <script>
@@ -12,7 +12,7 @@ export default {
   },
   methods: {
     alertDisplay() {
-        this.$swal({
+      this.$swal({
         title: "Добавить отложку",
         html:
           "<div style='text-align: left'>" +
@@ -36,21 +36,21 @@ export default {
             delayTo: document.getElementById("swal-input5")
           };
 
-          //let flag = false;
+          let flag = false;
 
           for (let article in data) {
             if (!data[article].value) {
               data[article].style.border = "0.1em solid #ff7373";
               data[article].placeholder = "Не введенно значение";
-              //  flag = true;
+              flag = true;
             } else {
               data[article].style.border = "1px solid #d9d9d9";
             }
           }
-          /*
+
           if (flag) {
             return false;
-          }*/
+          }
 
           for (let article in data) {
             data[article] = data[article].value;
@@ -65,11 +65,13 @@ export default {
 
 <style lang="sass" scoped>
 button
-  height: 3em
-  width: 7em
+  height: 2.8em
+  width: auto
   text-align: center
   color: rgb(48, 133, 214)
-  background-color: #fafafa
-  font-size: 1.2em
+  font-size: 1.3em
   border-radius: 0.4em
+  border: #737b84 .15em solid
+  font-family: Calibri, sans-serif
+  background-color: #fff
 </style>
