@@ -51,12 +51,26 @@ export default {
       this.takenIcon ? (this.takenIcon.style.visibility = "hidden") : false;
       this.takenIcon = icon;
 
-      let rotate = icon.style.transform === "rotateX(180deg)" ? 0 : 180;
+      let direction = await this.$store.dispatch("sortTable", columnName);
+
+      let rotate = direction === "ASC" ? 0 : 180;
 
       icon.style.visibility = "visible";
       icon.style.transform = "rotateX(" + rotate + "deg)";
 
-      await this.$store.dispatch("sortTable", columnName);
+      this.$store.getters.persons.sort((firstPerson, secondPerson) => {
+        return direction === "ASC"
+          ? firstPerson[columnName] === secondPerson[columnName]
+            ? 0
+            : firstPerson[columnName] > secondPerson[columnName]
+            ? 1
+            : -1
+          : firstPerson[columnName] === secondPerson[columnName]
+          ? 0
+          : firstPerson[columnName] < secondPerson[columnName]
+          ? 1
+          : -1;
+      });
     }
   },
   name: "Table"
@@ -92,6 +106,7 @@ svg {
   visibility: hidden;
   transition: transform 0.3s;
   transform-style: preserve-3d;
+  transform: rotateX(180deg);
 }
 
 .id {

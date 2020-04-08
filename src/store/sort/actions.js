@@ -7,7 +7,8 @@ export default {
     let payload = {
       name,
       direction
-    }
+    };
     commit("changeDirection", payload);
+    return direction;
   }
 };
