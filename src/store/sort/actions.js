@@ -1,7 +1,13 @@
+import getters from "./getters";
+
 export default {
-  async sortTable({ commit }, name) {
-    let column = await this.getters.getColumn(name);
-    let direction = column === "ASC" ? "DESC" : "ASC";
-    commit("changeDirection", column, direction);
+  async sortTable({ state, commit }, name) {
+    let column = getters.getColumn(state, name);
+    let direction = column.sortState === "ASC" ? "DESC" : "ASC";
+    let payload = {
+      name,
+      direction
+    }
+    commit("changeDirection", payload);
   }
 };

@@ -1,5 +1,8 @@
+import getters from "./getters";
+
 export default {
-  async changeDirection(column, direction) {
-    column = direction;
+  async changeDirection(state, payload) {
+    let column = getters.getColumn(state, payload.name);
+    column.sortState = payload.direction;
   }
 };

@@ -28,8 +28,7 @@
 
 <script>
 export default {
-  beforeCreate() {
-  },
+  beforeCreate() {},
   props: {
     id: Number,
     delay: String,

@@ -56,7 +56,7 @@ export default {
       icon.style.visibility = "visible";
       icon.style.transform = "rotateX(" + rotate + "deg)";
 
-      this.$store.modules.sortState.dispatch("sortTable", columnName);
+      await this.$store.dispatch("sortTable", columnName);
     }
   },
   name: "Table"

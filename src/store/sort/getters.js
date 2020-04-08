@@ -1,5 +1,5 @@
 export default {
-  getColumn: (state, column) => {
-    return state[column];
+  getColumn: (state, columnName) => {
+    return state[columnName];
   }
 };
