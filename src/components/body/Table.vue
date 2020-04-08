@@ -1,33 +1,33 @@
 <template>
   <div class="table">
-    <div class="id" @click="sortBy(0)">
+    <div class="id" @click="sortBy(0, 'number')">
       <p>
         Номер <font-awesome-icon icon="arrow-circle-down" class="sort_icon" />
       </p>
     </div>
-    <div @click="sortBy(1)" class="fullName">
+    <div @click="sortBy(1, 'fullname')" class="fullName">
       <p>
         ФИО <font-awesome-icon icon="arrow-circle-down" class="sort_icon" />
       </p>
     </div>
-    <div @click="sortBy(2)" class="deposit">
+    <div @click="sortBy(2, 'deposit')" class="deposit">
       <p>
         Депозит <font-awesome-icon icon="arrow-circle-down" class="sort_icon" />
       </p>
     </div>
-    <div @click="sortBy(3)" class="delayed">
+    <div @click="sortBy(3, 'delay')" class="delayed">
       <p>
         Начало отложки
         <font-awesome-icon icon="arrow-circle-down" class="sort_icon" />
       </p>
     </div>
-    <div @click="sortBy(4)" class="delayed_to">
+    <div @click="sortBy(4, 'delayTo')" class="delayed_to">
       <p>
         Конец отложки
         <font-awesome-icon icon="arrow-circle-down" class="sort_icon" />
       </p>
     </div>
-    <div @click="sortBy(5)" class="end">
+    <div @click="sortBy(5, 'endOfDelay')" class="end">
       <p>
         До конца срока
         <font-awesome-icon icon="arrow-circle-down" class="sort_icon" />
@@ -38,17 +38,25 @@
 
 <script>
 export default {
+  data() {
+    return {
+      icons: document.getElementsByClassName("sort_icon"),
+      takenIcon: ""
+    };
+  },
   methods: {
-    sortBy: async function(child) {
-      let icon = document.getElementsByClassName("sort_icon")[child];
-      let rotate = icon.style.transform === "rotate(180deg)" ? 0 : 180;
+    sortBy: async function(child, columnName) {
+      let icon = this.icons[child];
 
-      icon.style.webkitTransform = "rotate(" + rotate + "deg)";
-      icon.style.mozTransform = "rotate(" + rotate + "deg)";
-      icon.style.msTransform = "rotate(" + rotate + "deg)";
-      icon.style.oTransform = "rotate(" + rotate + "deg)";
-      icon.style.transform = "rotate(" + rotate + "deg)";
+      this.takenIcon ? (this.takenIcon.style.visibility = "hidden") : false;
+      this.takenIcon = icon;
 
+      let rotate = icon.style.transform === "rotateX(180deg)" ? 0 : 180;
+
+      icon.style.visibility = "visible";
+      icon.style.transform = "rotateX(" + rotate + "deg)";
+
+      this.$store.modules.sortState.dispatch("sortTable", columnName);
     }
   },
   name: "Table"
@@ -71,6 +79,8 @@ div.table {
 .delayed,
 .delayed_to,
 .end {
+  cursor: pointer;
+  user-select: none;
   text-align: center;
 }
 
@@ -79,7 +89,8 @@ svg {
   margin-left: 0.4em;
   margin-top: auto;
   margin-bottom: auto;
-  transition: transform 0.8s;
+  visibility: hidden;
+  transition: transform 0.3s;
   transform-style: preserve-3d;
 }
 

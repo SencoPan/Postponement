@@ -17,7 +17,7 @@
     </div>
     <div class="end">
       <p>
-        {{ `${differenceBetweenDates(delayTo, Date.now().toString())} Дн.` }}
+        {{ `${endOfDelay} Дн.` }}
       </p>
     </div>
     <div class="delete">
@@ -28,13 +28,16 @@
 
 <script>
 export default {
+  beforeCreate() {
+  },
   props: {
     id: Number,
     delay: String,
     delayTo: String,
     deposit: Number,
     fullName: String,
-    number: Number
+    number: Number,
+    endOfDelay: Number
   },
   data() {
     return {
@@ -42,19 +45,6 @@ export default {
     };
   },
   methods: {
-    differenceBetweenDates: (firstDate, secondDate) => {
-      let date = {
-        year: firstDate.substr(0, 4),
-        month: firstDate.substr(5, 2),
-        day: firstDate.substr(8, 2)
-      };
-
-      let first = new Date(date.year, +date.month - 1, date.day, 12, 0, 0, 0);
-
-      let day = 8.64e7;
-
-      return Math.round(Math.abs(first - secondDate) / day);
-    },
     deletePerson: async function() {
       await this.$swal.fire({
         icon: "warning",

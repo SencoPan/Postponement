@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
+import sortState from "./sort";
 
 Vue.use(Vuex);
 
@@ -23,17 +24,38 @@ export default new Vuex.Store({
       state.csrfToken = token;
     },
     async assignPersons(state, persons) {
-      state.currentPersons = persons.data;
+      state.currentPersons = persons;
     },
     async assignPersonsAfterPost(state, persons) {
       state.currentPersons = persons;
     }
   },
   actions: {
-    async getAllPersons({ commit }) {
-      axios.get("http://localhost:3000/api/person").then(allPersons => {
-        commit("assignPersons", allPersons);
-      });
+    async getAllPersons({ commit, dispatch }) {
+      const allPersons = await axios.get("http://localhost:3000/api/person");
+      for (let i = 0; i < allPersons.data.length; i++){
+        allPersons.data[i].endOfDelay = await dispatch(
+          "differenceBetweenDates",
+          allPersons.data[i].delayTo
+        );
+      }
+      commit("assignPersons", allPersons.data);
+    },
+    async differenceBetweenDates(
+      context,
+      firstDate,
+      secondDate = Date.now().toString()
+    ) {
+      let date = {
+        year: firstDate.substr(0, 4),
+        month: firstDate.substr(5, 2),
+        day: firstDate.substr(8, 2)
+      };
+
+      let first = new Date(date.year, +date.month - 1, date.day, 12, 0, 0, 0);
+
+      let day = 8.64e7;
+      return Math.round(Math.abs(first - secondDate) / day);
     },
     async addPersonAndGetAll({ dispatch }, data) {
       axios({
@@ -64,5 +86,7 @@ export default new Vuex.Store({
       );
     }
   },
-  modules: {}
+  modules: {
+    sortState
+  }
 });

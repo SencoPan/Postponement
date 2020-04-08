@@ -12,7 +12,7 @@ export default {
   },
   methods: {
     alertDisplay() {
-      this.$swal({
+        this.$swal({
         title: "Добавить отложку",
         html:
           "<div style='text-align: left'>" +

@@ -15,6 +15,7 @@
               :number="item.number"
               :deposit="item.deposit"
               :fullName="item.fullname"
+              :endOfDelay="item.endOfDelay"
             />
           </div>
         </div>
