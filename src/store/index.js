@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 import sortState from "./sort";
+import error from "./error";
 
 Vue.use(Vuex);
 
@@ -33,7 +34,7 @@ export default new Vuex.Store({
   actions: {
     async getAllPersons({ commit, dispatch }) {
       const allPersons = await axios.get("http://localhost:3000/api/person");
-      for (let i = 0; i < allPersons.data.length; i++){
+      for (let i = 0; i < allPersons.data.length; i++) {
         allPersons.data[i].endOfDelay = await dispatch(
           "differenceBetweenDates",
           allPersons.data[i].delayTo
@@ -57,22 +58,26 @@ export default new Vuex.Store({
       let day = 8.64e7;
       return Math.round(Math.abs(first - secondDate) / day);
     },
-    async addPersonAndGetAll({ dispatch }, data) {
+    async addPersonAndGetAll({ dispatch }, { data, swal }) {
       axios({
         method: "post",
         url: "http://localhost:3000/api/person",
         data: data
       })
         .then(() => dispatch("getAllPersons"))
-        .catch(error => console.error(error));
+        .catch(error =>
+          dispatch("fireError", { message: error.message, code: 3, swal })
+        );
     },
-    async deletePerson({ /*commit, */ dispatch }, id) {
+    async deletePerson({ /*commit, */ dispatch }, { id, swal }) {
       axios
         .delete(`http://localhost:3000/api/person?id=${id}`)
         .then(() => dispatch("getAllPersons"))
-        .catch(error => console.error(error));
+        .catch(error =>
+          dispatch("fireError", { message: error.message, code: 2, swal })
+        );
     },
-    async getCSRFToken({ commit }) {
+    async getCSRFToken({ commit, dispatch }, swal) {
       axios.get("http://localhost:3000/api/getToken").then(
         response => {
           commit("assignToken", response.data.csrfToken);
@@ -80,13 +85,14 @@ export default new Vuex.Store({
           axios.defaults.headers.common["X-CSRF-TOKEN"] =
             response.data.csrfToken;
         },
-        err => {
-          console.error(err);
+        error => {
+          dispatch("fireError", { message: error.message, code: 1, swal });
         }
       );
     }
   },
   modules: {
-    sortState
+    sortState,
+    error
   }
 });

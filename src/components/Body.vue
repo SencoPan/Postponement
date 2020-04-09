@@ -13,7 +13,7 @@
               :delay="item.delay"
               :delayTo="item.delayTo"
               :number="item.number"
-              :deposit="item.deposit"
+              :deposit="item.deposit.toString()"
               :fullName="item.fullname"
               :endOfDelay="item.endOfDelay"
             />
@@ -30,6 +30,7 @@ import Table from "./body/Table";
 
 export default {
   beforeCreate() {
+    this.$store.dispatch("getCSRFToken", this.$swal);
     this.$store.dispatch("getAllPersons");
   },
   name: "Body",

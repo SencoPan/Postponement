@@ -55,7 +55,10 @@ export default {
           for (let article in data) {
             data[article] = data[article].value;
           }
-          this.$store.dispatch("addPersonAndGetAll", data);
+          this.$store.dispatch("addPersonAndGetAll", {
+            data,
+            swal: this.$swal
+          });
         }
       });
     }
@@ -68,10 +71,11 @@ button
   height: 2.8em
   width: auto
   text-align: center
-  color: rgb(48, 133, 214)
+  color: white
   font-size: 1.3em
   border-radius: 0.4em
-  border: #737b84 .15em solid
+  border: white .1em solid
   font-family: Calibri, sans-serif
-  background-color: #fff
+  background-color: rgb(58, 71, 243)
+  text-outline: none
 </style>

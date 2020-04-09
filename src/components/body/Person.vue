@@ -52,7 +52,10 @@ export default {
         showCloseButton: true,
         showCancelButton: true,
         preConfirm: () => {
-          this.$store.dispatch("deletePerson", this.id);
+          this.$store.dispatch("deletePerson", {
+            id: this.id,
+            swal: this.$swal
+          });
         }
       });
     }

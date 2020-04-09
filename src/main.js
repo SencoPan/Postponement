@@ -4,7 +4,10 @@ import router from "./router";
 import store from "./store";
 import VueSweetalert2 from "vue-sweetalert2";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUserTimes, faArrowCircleDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUserTimes,
+  faArrowCircleDown
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 Vue.config.productionTip = false;
