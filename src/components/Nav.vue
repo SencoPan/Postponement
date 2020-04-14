@@ -50,7 +50,22 @@ div.navigation {
   flex-direction: row;
   margin: auto 0 auto auto;
 }
+
+@media (max-width: 1280px) {
+  div.nav {
+    max-width: 1280px;
+  }
+  div.content {
+    margin-left: 1em;
+    max-width: 1080px;
+    justify-content: space-between;
+  }
+  div.navigation {
+    margin: auto 0 auto 0;
+  }
+}
 /*div.navigation div.item {
   margin-left: 1em;
 }*/
+
 </style>

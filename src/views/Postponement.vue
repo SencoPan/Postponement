@@ -3,7 +3,6 @@
     <Nav></Nav>
     <Body></Body>
     <Footer></Footer>
-    <p>{{ this.$store.state.testPrt }}</p>
   </div>
 </template>
 

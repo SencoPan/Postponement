@@ -80,7 +80,7 @@ export default {
 <style scoped>
 div.table {
   display: flex;
-  min-width: 90em;
+  width: 90em;
   background-color: #3800ff;
   border: 0.1em #737b84 solid;
   border-bottom: none;
@@ -133,5 +133,17 @@ svg {
 .end p {
   display: flex;
   margin: auto;
+}
+@media (max-width: 1280px) {
+  .table {
+    max-width: 1080px;
+    align-items: center;
+  }
+  .id {
+    width: 6em;
+  }
+  .end {
+    margin-right: 4em;
+  }
 }
 </style>

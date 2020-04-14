@@ -89,5 +89,14 @@ svg {
 .contact a::after {
   content: "";
   margin-left: 0.3em;
-}</style
->s
+}
+@media (max-width: 1280px) {
+  .content {
+    margin-left: 1em;
+    max-width: 1280px;
+  }
+  .footer {
+    max-width: 1280px;
+  }
+}
+</style>

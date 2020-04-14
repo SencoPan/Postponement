@@ -14,4 +14,10 @@ body {
   margin: 0;
   min-width: 90em;
 }
+
+@media (max-width: 1280px) {
+  body {
+    overflow-x: hidden;
+  }
+}
 </style>

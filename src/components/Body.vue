@@ -1,3 +1,4 @@
+<!-- USED !IMPORTANT IN MEDIA REQUEST AT .BODY -->
 <template>
   <div class="body">
     <div class="content">
@@ -57,5 +58,18 @@ div.content h1 {
   border-bottom-left-radius: 0.4em;
   border-bottom-right-radius: 0.4em;
   border-bottom: #737b84 0.1em solid;
+}
+
+@media (max-width: 1280px) {
+  .table_content,
+  .content {
+    max-width: 1080px;
+  }
+  .body {
+    margin-right: 9em;
+  }
+  .list_of_postponement {
+    max-width: 1080px;
+  }
 }
 </style>
