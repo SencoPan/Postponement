@@ -9,15 +9,11 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     currentPersons: [],
-    testPrt: [],
-    csrfToken: ""
+    testPrt: []
   },
   getters: {
     persons: state => {
       return state.currentPersons;
-    },
-    getCSRF: state => {
-      return state.csrfToken;
     }
   },
   mutations: {
@@ -33,7 +29,9 @@ export default new Vuex.Store({
   },
   actions: {
     async getAllPersons({ commit, dispatch }) {
-      const allPersons = await axios.get("http://localhost:3000/api/person");
+      const allPersons = await axios.get(
+        "https://postponements.herokuapp.com/api/person"
+      );
       for (let i = 0; i < allPersons.data.length; i++) {
         allPersons.data[i].endOfDelay = await dispatch(
           "differenceBetweenDates",
@@ -56,13 +54,14 @@ export default new Vuex.Store({
       let first = new Date(date.year, +date.month - 1, date.day, 12, 0, 0, 0);
 
       let day = 8.64e7;
+      if (first - secondDate < 0) return 0;
       return Math.round(Math.abs(first - secondDate) / day);
     },
     async addPersonAndGetAll({ dispatch }, { data, swal }) {
       axios({
         method: "post",
-        url: "http://localhost:3000/api/person",
-        data: data
+        url: "https://postponements.herokuapp.com/api/person",
+        data: { data }
       })
         .then(() => dispatch("getAllPersons"))
         .catch(error =>
@@ -70,25 +69,30 @@ export default new Vuex.Store({
         );
     },
     async deletePerson({ /*commit, */ dispatch }, { id, swal }) {
-      axios
-        .delete(`http://localhost:3000/api/person?id=${id}`)
+      axios({
+        method: "DELETE",
+        url: `https://postponements.herokuapp.com/api/person?id=${id}`
+      })
         .then(() => dispatch("getAllPersons"))
         .catch(error =>
           dispatch("fireError", { message: error.message, code: 2, swal })
         );
     },
-    async getCSRFToken({ commit, dispatch }, swal) {
-      axios.get("http://localhost:3000/api/getToken").then(
-        response => {
-          commit("assignToken", response.data.csrfToken);
-          axios.defaults.headers.common.xsrfCookieName = "_csrf";
-          axios.defaults.headers.common["X-CSRF-TOKEN"] =
-            response.data.csrfToken;
-        },
-        error => {
-          dispatch("fireError", { message: error.message, code: 1, swal });
-        }
-      );
+    async redactPersonField(
+      { /*commit, */ dispatch },
+      { redactValue, dbName, id },
+      swal = this.$swal
+    ) {
+      const fieldName = dbName;
+      axios({
+        method: "PATCH",
+        url: `https://postponements.herokuapp.com/api/person`,
+        data: { redactValue, fieldName, id }
+      })
+        .then(() => dispatch("getAllPersons"))
+        .catch(error =>
+          dispatch("fireError", { message: error.message, code: 4, swal })
+        );
     }
   },
   modules: {
