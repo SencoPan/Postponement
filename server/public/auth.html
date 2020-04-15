@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body{
+            display: flex;
+            margin: auto;
+            font-family: Calibri, sans-serif;
+        }
+        .content {
+            width: 32em;
+            height: 28em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15em auto 15em auto;
+            flex-direction: column;
+
+        }
+        h1 {
+            margin-top: 1em;
+            color: #3a47f3;
+        }
+        form {
+            width: 30em;
+            height: 24em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            border: #9d9d9d .2em solid;
+            background: white;
+            border-radius: 0.4em;
+        }
+        .inputs {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+        label{
+            display: flex;
+            flex-direction: column;
+            color: #3a47f3;
+            font-size: 1.05em;
+        }
+        input{
+            width: 20em;
+            border-radius: .2em;
+        }
+        input:not([type='submit']) {
+            height: 2em;
+            margin-bottom: 1em;
+            font-size: 1.05em;
+            border: #606060 .1em solid;
+            color: #727b93;
+        }
+        input[type='submit'] {
+            font-size: 1.05em;
+            margin-top: .5em;
+            margin-bottom: 1.5em;
+            width: 15em;
+            height: 3em;
+            color: white;
+            background: #5586ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <form method="post" action="/login">
+            <h1> Войти в админ панель </h1>
+            <div class="inputs">
+                <label for="login">
+                    Логин
+                    <input type="text" id="login" name="login">
+                </label>
+                <label for="password">
+                    Пароль
+                    <input type="password" id="password" name="password">
+                </label>
+            </div>
+            <input type="submit" value="Войти">
+        </form>
+    </div>
+</body>
+</html>
